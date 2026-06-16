@@ -13,7 +13,8 @@ const (
 
 type Charge struct {
 	ID        string    `json:"id"`
-	AccountID string    `json:"account_id"`  // Conta que vai receber o dinheiro
+	AccountID string    `json:"account_id"` // Conta que vai receber o dinheiro
+	Account   Account   `json:"account"`
 	Amount    int64     `json:"amount"`      // Valor em centavos
 	Status    string    `json:"status"`      // "pending", "paid", "expired", "refunded"
 	PixQRCode string    `json:"pix_qr_code"` // Dados do QR Code simulado

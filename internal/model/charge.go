@@ -5,19 +5,19 @@ import "time"
 type ChargeStatus string
 
 const (
-	pending  ChargeStatus = "pending"
-	paid     ChargeStatus = "paid"
-	expired  ChargeStatus = "expired"
-	refunded ChargeStatus = "refunded"
+	ChargeStatusPending  ChargeStatus = "pending"
+	ChargeStatusPaid     ChargeStatus = "paid"
+	ChargeStatusExpired  ChargeStatus = "expired"
+	ChargeStatusRefunded ChargeStatus = "refunded"
 )
 
 type Charge struct {
-	ID        string    `json:"id"`
-	AccountID string    `json:"account_id"` // Conta que vai receber o dinheiro
-	Account   Account   `json:"account"`
-	Amount    int64     `json:"amount"`      // Valor em centavos
-	Status    string    `json:"status"`      // "pending", "paid", "expired", "refunded"
-	PixQRCode string    `json:"pix_qr_code"` // Dados do QR Code simulado
-	ExpiresAt time.Time `json:"expires_at"`
-	CreatedAt time.Time `json:"created_at"`
+	ID        string       `gorm:"primaryKey;type:uuid" json:"id"`
+	AccountID string       `gorm:"type:uuid;not null;index" json:"account_id"`
+	Account   Account      `gorm:"foreignKey:AccountID;constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;" json:"account"`
+	Amount    int64        `gorm:"not null" json:"amount"`
+	Status    ChargeStatus `gorm:"type:varchar(20);not null;default:'pending'" json:"status"`
+	PixQRCode string       `gorm:"type:text" json:"pix_qr_code"`
+	ExpiresAt time.Time    `gorm:"not null" json:"expires_at"`
+	CreatedAt time.Time    `gorm:"autoCreateTime" json:"created_at"`
 }

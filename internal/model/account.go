@@ -13,6 +13,7 @@ const (
 type Account struct {
 	ID        string        `json:"id"`
 	UserID    string        `json:"user_id"`
+	User      User          `json:"user"`
 	Balance   int64         `json:"balance"`  // Balance in cents
 	Currency  string        `json:"currency"` // Ex: "BRL"
 	Status    AccountStatus `json:"status"`   // "active", "blocked"

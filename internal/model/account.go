@@ -11,11 +11,11 @@ const (
 )
 
 type Account struct {
-	ID        string        `json:"id"`
-	UserID    string        `json:"user_id"`
-	User      User          `json:"user"`
-	Balance   int64         `json:"balance"`  // Balance in cents
-	Currency  string        `json:"currency"` // Ex: "BRL"
-	Status    AccountStatus `json:"status"`   // "active", "blocked"
-	UpdatedAt time.Time     `json:"updated_at"`
+	ID        string        `gorm:"primaryKey;type:uuid" json:"id"`
+	UserID    string        `gorm:"type:uuid;not null;index" json:"user_id"`
+	User      User          `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;" json:"user"`
+	Balance   int64         `gorm:"not null;default:0" json:"balance"`
+	Currency  string        `gorm:"type:varchar(3);not null;default:'BRL'" json:"currency"`
+	Status    AccountStatus `gorm:"type:varchar(20);not null;default:'pending'" json:"status"`
+	UpdatedAt time.Time     `gorm:"autoUpdateTime" json:"updated_at"`
 }

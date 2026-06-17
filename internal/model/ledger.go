@@ -3,6 +3,7 @@ package model
 import "time"
 
 // The Transaction is macro event (pix to: XYZ)
+// Transaction just keep reasons and descriptions
 type Transaction struct {
 	ID          string    `gorm:"primaryKey;type:uuid" json:"id"`
 	Description string    `gorm:"type:varchar(255);not null" json:"description"`

@@ -2,6 +2,7 @@ package model
 
 import "time"
 
+// User is about CPF or CNPJ person
 type User struct {
 	ID        string    `gorm:"primaryKey;type:uuid" json:"id"`
 	Name      string    `gorm:"type:varchar(255);not null" json:"name"`

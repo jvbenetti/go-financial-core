@@ -11,6 +11,7 @@ const (
 	ChargeStatusRefunded ChargeStatus = "refunded"
 )
 
+// The Charge it's the invoice that exists before the transaction
 type Charge struct {
 	ID        string       `gorm:"primaryKey;type:uuid" json:"id"`
 	AccountID string       `gorm:"type:uuid;not null;index" json:"account_id"`

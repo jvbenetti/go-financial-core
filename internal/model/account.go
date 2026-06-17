@@ -10,6 +10,7 @@ const (
 	AccountStatusBlocked AccountStatus = "blocked"
 )
 
+// Account involves everything about transactions and Charges
 type Account struct {
 	ID        string        `gorm:"primaryKey;type:uuid" json:"id"`
 	UserID    string        `gorm:"type:uuid;not null;index" json:"user_id"`

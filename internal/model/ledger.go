@@ -10,7 +10,7 @@ type Transaction struct {
 	CreatedAt   time.Time `gorm:"autoCreateTime" json:"created_at"`
 }
 
-// The LedgerEntry is which affected line
+// The LedgerEntry it's the immutable mathematical movement
 type LedgerEntry struct {
 	ID            string      `gorm:"primaryKey;type:uuid" json:"id"`
 	TransactionID string      `gorm:"type:uuid;not null;index" json:"transaction_id"`

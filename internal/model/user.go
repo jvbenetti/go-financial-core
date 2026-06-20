@@ -2,6 +2,13 @@ package model
 
 import "time"
 
+type UserRole string
+
+const (
+	UserRoleAdmin    UserRole = "admin"
+	UserRoleCustomer UserRole = "customer"
+)
+
 // User is about CPF or CNPJ person
 type User struct {
 	ID        string    `gorm:"primaryKey;type:uuid" json:"id"`

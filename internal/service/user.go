@@ -25,4 +25,15 @@ func (s *UserService) CreateUserWithAccount(req *request.UserRequest) (*response
 	if err := user.HashPassword(req.Password); err != nil {
 		return nil, errors.New("failed to hash password")
 	}
+
+	// Init transaction
+	tx := s.DB.Begin()
+
+	// If it has error or panic, rollback all!
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+		}
+	}()
+})
 }

@@ -1,6 +1,10 @@
 package model
 
-import "time"
+import (
+	"time"
+
+	"golang.org/x/crypto/bcrypt"
+)
 
 type UserRole string
 
@@ -19,4 +23,13 @@ type User struct {
 	Phone     string    `gorm:"type:varchar()"`
 	Role      UserRole  `gorm:"default:'customer';type:varchar(50)" json:"role"`
 	CreatedAt time.Time `gorm:"autoCreateTime" json:"created_at"`
+}
+
+func (u *User) HashPassword(plainPassword string) error {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(plainPassword), 14) // 14 é o "cost" (security level)
+	if err != nil {
+		return err
+	}
+	u.Password = string(bytes)
+	return nil
 }

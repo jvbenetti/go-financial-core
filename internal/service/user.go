@@ -19,4 +19,6 @@ func (s *UserService) CreateUserWithAccount(req *request.UserRequest) (*response
 		Phone:    req.Phone,
 		Role:     model.UserRoleCustomer,
 	}
+
+	if err := user.Ha
 }

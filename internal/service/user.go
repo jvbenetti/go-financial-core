@@ -17,6 +17,6 @@ func (s *UserService) CreateUserWithAccount(req *request.UserRequest) (*response
 		Email:    req.Email,
 		Document: req.Document,
 		Phone:    req.Phone,
-		Role:     model.Customer, // Assumindo que você tem isso
+		Role:     model.UserRoleCustomer,
 	}
 }

@@ -1,6 +1,8 @@
 package service
 
 import (
+	"errors"
+
 	"github.com/jvbenetti/go-financial-core/internal/dto/request"
 	"github.com/jvbenetti/go-financial-core/internal/dto/response"
 	"github.com/jvbenetti/go-financial-core/internal/model"
@@ -20,5 +22,7 @@ func (s *UserService) CreateUserWithAccount(req *request.UserRequest) (*response
 		Role:     model.UserRoleCustomer,
 	}
 
-	if err := user.Ha
+	if err := user.HashPassword(req.Password); err != nil {
+		return nil, errors.New("failed to hash password")
+	}
 }

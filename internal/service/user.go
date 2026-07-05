@@ -52,8 +52,8 @@ func (s *UserService) CreateUserWithAccount(req *request.UserRequest) (*response
 		Status: model.AccountStatusActive,
 	}
 	if err := tx.Create(&account).Error; err != nil {
-		tx.Rollback() // If its has a error, rollback
-		return nil, errors.New("falha ao criar a conta bancária")
+		tx.Rollback() // If its has error, rollback
+		return nil, errors.New("failed to creat the bank account")
 	}
 
 })

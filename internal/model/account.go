@@ -20,8 +20,8 @@ const (
 
 // Account involves everything about transactions and Charges
 type Account struct {
-	ID        string        `gorm:"primaryKey;type:uuid" json:"id"`
-	UserID    string        `gorm:"type:uuid;not null;index" json:"user_id"`
+	ID        uint          `gorm:"primaryKey;type:uuid" json:"id"`
+	UserID    uint          `gorm:"type:uuid;not null;index" json:"user_id"`
 	User      User          `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;" json:"user"`
 	Balance   int64         `gorm:"not null;default:0" json:"balance"`
 	Currency  CurrencyCode  `gorm:"type:varchar(3);not null;default:'BRL'" json:"currency"`

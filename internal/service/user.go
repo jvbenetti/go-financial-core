@@ -56,5 +56,8 @@ func (s *UserService) CreateUserWithAccount(req *request.UserRequest) (*response
 		return nil, errors.New("failed to creat the bank account")
 	}
 
+	// 5: If everything ok, create all at once!
+	tx.Commit()
+
 })
 }

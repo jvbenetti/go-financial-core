@@ -6,6 +6,7 @@ import (
 	"github.com/jvbenetti/go-financial-core/internal/dto/request"
 	"github.com/jvbenetti/go-financial-core/internal/dto/response"
 	"github.com/jvbenetti/go-financial-core/internal/model"
+	"golang.org/x/text/currency"
 	"gorm.io/gorm"
 )
 
@@ -41,6 +42,14 @@ func (s *UserService) CreateUserWithAccount(req *request.UserRequest) (*response
 	if err := tx.Create(&user).Error; err != nil {
 		tx.Rollback()
 		return nil, err
+	}
+
+	// 4: Save the account to the new user
+	account := model.Account{
+		UserID: user.ID,
+		Balance: 0,
+		Currency: model.CurrencyBRL,
+		Status: model.AccountStatusActive,
 	}
 })
 }

@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo/v5"
 )
 
-type UserHandler struct {
+type UserHandler struct { // Struct for receiver
 	UserService *service.UserService
 }
 

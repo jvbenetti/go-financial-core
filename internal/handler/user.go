@@ -12,7 +12,7 @@ type UserHandler struct {
 	UserService *service.UserService
 }
 
-func (h *UserHandler) Register(c echo.Context) error {
+func (h *UserHandler) Register(c *echo.Context) error {
 	req := new(request.UserRequest)
 
 	// 1. Validate JSON

@@ -17,4 +17,10 @@ func Connect() (*gorm.DB, error) {
 		return nil, fmt.Errorf("DATABASE_URL is not set in .env")
 	}
 
+	env := os.Getenv("APP_ENV")
+	logLevel := logger.Info
+	if env == "production" {
+		logLevel = logger.Error // In production log only errors
+	}
+
 }

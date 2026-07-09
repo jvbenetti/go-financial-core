@@ -23,4 +23,16 @@ func Connect() (*gorm.DB, error) {
 		logLevel = logger.Error // In production log only errors
 	}
 
+	// Connect the database and save the local var "db"
+	db, err := gorm.Open(postgres.New(postgres.Config{
+		DSN:                  dsn,
+		PreferSimpleProtocol: true, // Compatible with Supabase/PgBouncer
+	}), &gorm.Config{
+		Logger: logger.Default.LogMode(logLevel),
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("error connecting to database: %w", err)
+	}
+
 }

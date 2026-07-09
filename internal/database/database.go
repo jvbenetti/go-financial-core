@@ -35,4 +35,26 @@ func Connect() (*gorm.DB, error) {
 		return nil, fmt.Errorf("error connecting to database: %w", err)
 	}
 
+	fmt.Println("🚀 Database connected!")
+
+	// Migration System
+	if os.Getenv("RUN_MIGRATIONS") == "true" {
+		fmt.Println("⏳ Running migrations, this may take a few seconds...")
+
+		err = db.AutoMigrate(
+			&model.User{},
+			&model.Account{},
+			&model.Transaction{},
+			&model.LedgerEntry{},
+			&model.Charge{},
+			&model.IdempotencyKey{},
+		)
+
+		if err != nil {
+			return nil, fmt.Errorf("migration error: %w", err)
+		}
+		fmt.Println("✅ Tables Created!")
+	} else {
+		fmt.Println("⏭️ Skipping Migrations!")
+	}
 }

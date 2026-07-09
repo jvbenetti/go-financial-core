@@ -12,3 +12,11 @@ import (
 )
 
 var DB *gorm.DB
+
+func Connect() (*gorm.DB, error) {
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		return nil, fmt.Errorf("DATABASE_URL is not set in .env")
+	}
+
+}

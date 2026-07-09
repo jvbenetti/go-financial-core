@@ -11,8 +11,6 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-var DB *gorm.DB
-
 func Connect() (*gorm.DB, error) {
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {

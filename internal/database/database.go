@@ -57,4 +57,6 @@ func Connect() (*gorm.DB, error) {
 	} else {
 		fmt.Println("⏭️ Skipping Migrations!")
 	}
+
+	return db, nil
 }

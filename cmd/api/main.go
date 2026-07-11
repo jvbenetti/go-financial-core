@@ -28,4 +28,9 @@ func main() {
 
 	// 5. Call Router func
 	route.RegisterRoutes(e, userHandler)
+
+	// 6. Run Server
+	if err := e.Start(":8080"); err != nil {
+		log.Fatal(err)
+	}
 }

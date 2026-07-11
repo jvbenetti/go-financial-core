@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/jvbenetti/go-financial-core/internal/database"
+	"github.com/jvbenetti/go-financial-core/internal/handler"
 	"github.com/jvbenetti/go-financial-core/internal/service"
 )
 
@@ -16,4 +17,7 @@ func main() {
 
 	// 2. Call Services
 	userService := &service.UserService{DB: db}
+
+	// 3. Call handler
+	userHandler := handler.UserHandler{UserService: userService}
 }

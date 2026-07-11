@@ -13,4 +13,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
+
+	// 2. Call Services
+	userService := &service.UserService{DB: db}
 }

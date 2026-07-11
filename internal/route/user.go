@@ -5,7 +5,7 @@ import (
 	"github.com/labstack/echo/v5"
 )
 
-func SetupUserGroup(public *echo.Echo, h handler.UserHandler) {
+func SetupUserRoutes(public *echo.Group, h *handler.UserHandler) {
 	// Public Routes
 	authGroup := public.Group("/auth")
 	authGroup.POST("", h.Register)

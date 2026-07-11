@@ -2,7 +2,6 @@ package database
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/jvbenetti/go-financial-core/internal/model"

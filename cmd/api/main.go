@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/joho/godotenv"
 	"github.com/jvbenetti/go-financial-core/internal/database"
 	"github.com/jvbenetti/go-financial-core/internal/handler"
 	"github.com/jvbenetti/go-financial-core/internal/route"
@@ -11,6 +12,12 @@ import (
 )
 
 func main() {
+	// Load environment variables from .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	// 1. Connect database
 	db, err := database.Connect() // Only connect
 	if err != nil {

@@ -15,10 +15,10 @@ const (
 
 // User is about CPF or CNPJ person
 type User struct {
-	ID        uint      `gorm:"primaryKey;type:uuid" json:"id"`
+	ID        string    `gorm:"primaryKey;type:uuid;default:gen_random_uuid()" json:"id"` // Alterado para string e adicionado o default
 	Username  string    `gorm:"type:varchar(255);not null" json:"user_name"`
 	Password  string    `gorm:"type:varchar(255);not null" json:"-"`
-	Document  string    `gorm:"type:varchar(20);uniqueIndex;not null" json:"document"` // Unique CPF or CNPJ
+	Document  string    `gorm:"type:varchar(20);uniqueIndex;not null" json:"document"`
 	Email     string    `gorm:"type:varchar(255);uniqueIndex;not null" json:"email"`
 	Phone     string    `gorm:"type:varchar(20)"`
 	Role      UserRole  `gorm:"default:'customer';type:varchar(50)" json:"role"`
